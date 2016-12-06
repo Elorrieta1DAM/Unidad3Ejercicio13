@@ -19,9 +19,48 @@ public class Unidad3Ejercicio13 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-  
+        int diamax = 1, diamin = 1;
+        double temp, sumatemp = 0, tempmax = -22, tempmin = 40;
+        char salir;
+        do {
+            System.out.println("Introduce el año: ");
+            int año = tc.nextInt();
+            if (esBisiesto(año) == true) {
+                System.out.println("El año es Bisiesto");
+            } else {
+                System.out.println("El año no es Bisiesto");
+            }
+            System.out.println("Introduce un mes entre 1 y 12: ");
+            int mes = tc.nextInt();
+            while (mes < 1 || mes > 12) {
+                System.out.println("Error !, vuelve a introducer el mes");
+                mes = tc.nextInt();
+            }
+            System.out.println("El mes " + mes + " es " + nombreMes(mes));
+            for (int i = 0; i < numDiasMes(mes, año); i++) {
+                temp = leerTemperatura();
+                System.out.println("Has dicho que el Dia " + (i + 1) + " hace una temperatura de " + temp + "ºC");
+                sumatemp += temp;
+
+                if (temp > tempmax) {
+                    tempmax = temp;
+                    diamax = i;
+                }
+                if (temp < tempmin) {
+                    tempmin = temp;
+                    diamin = i;
+                }
+            }
+            double media = sumatemp / numDiasMes(mes, año);
+            mostrarDatos(media, tempmax, diamax, tempmin, diamin);
+            do {
+                System.out.println("Desea finalizar (S)i/(N)o");
+                salir = tc.nextLine().charAt(0);
+            } while (salir != 'S' && salir != 's' && salir != 'N' && salir != 'n');
+        } while (salir == 'S' || salir == 's');
     }
-  /**
+
+    /**
      *
      * @param a
      * @return
@@ -34,6 +73,12 @@ public class Unidad3Ejercicio13 {
         return bis;
     }
 
+    /**
+     *
+     * @param m
+     * @param a
+     * @return
+     */
     public static int numDiasMes(int m, int a) {
         int numdias = 0;
         while (m >= 1 && m <= 12) {
@@ -123,10 +168,10 @@ public class Unidad3Ejercicio13 {
      * @return
      */
     public static double leerTemperatura() {
-        System.out.print("Instroduce una temperatura entre -22 y 40 ªC: ");
+        System.out.print("Introduce una temperatura entre -22 y 40 ªC: ");
         double t = tc.nextInt();
         while (t < -22 || t > 40) {
-            System.out.print("Instroduce una temperatura entre -22 y 40 ªC: ");
+            System.out.print("Error !, Introduce una temperatura entre -22 y 40 ªC: ");
             t = tc.nextInt();
         }
         return t;
@@ -142,10 +187,10 @@ public class Unidad3Ejercicio13 {
      * @param e Dia en que se registra dicha temperatura minima
      */
     public static void mostrarDatos(double a, double b, double c, double d, double e) {
-        System.out.println("\t\tºC\tºF\t Dia");
-        System.out.println("Temp. Media\t" + a + "\t" + celsiusAFarenheit(a) + "\t---");
-        System.out.println("Temp. Max\t" + b + "\t" + celsiusAFarenheit(b) + "\t" + c);
-        System.out.println("Temp. Max\t" + d + "\t" + celsiusAFarenheit(d) + "\t" + e);
+        System.out.println("\t\tºC\tºF\t\t\tDia");
+        System.out.println("Temp. Media\t" + a + "\t" + celsiusAFarenheit(a) + "\t\t\t---");
+        System.out.println("Temp. Max\t" + b + "\t" + celsiusAFarenheit(b) + "\t\t\t" + c);
+        System.out.println("Temp. Min\t" + d + "\t" + celsiusAFarenheit(d) + "\t\t\t" + e);
     }
 
     /**
