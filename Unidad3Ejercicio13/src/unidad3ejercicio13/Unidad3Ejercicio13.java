@@ -19,9 +19,9 @@ public class Unidad3Ejercicio13 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int diamax = 1, diamin = 1;
+        int diamax=1, diamin=1;
         double temp, sumatemp = 0, tempmax = -22, tempmin = 40;
-        char salir;
+        char termina;
         do {
             System.out.println("Introduce el año: ");
             int año = tc.nextInt();
@@ -37,9 +37,9 @@ public class Unidad3Ejercicio13 {
                 mes = tc.nextInt();
             }
             System.out.println("El mes " + mes + " es " + nombreMes(mes));
-            for (int i = 0; i < numDiasMes(mes, año); i++) {
+            for (int i = 1; i < numDiasMes(mes, año); i++) {
                 temp = leerTemperatura();
-                System.out.println("Has dicho que el Dia " + (i + 1) + " hace una temperatura de " + temp + "ºC");
+                System.out.println("Has dicho que el Dia " + i + " hace una temperatura de " + temp + "ºC");
                 sumatemp += temp;
 
                 if (temp > tempmax) {
@@ -53,11 +53,12 @@ public class Unidad3Ejercicio13 {
             }
             double media = sumatemp / numDiasMes(mes, año);
             mostrarDatos(media, tempmax, diamax, tempmin, diamin);
-            do {
-                System.out.println("Desea finalizar (S)i/(N)o");
-                salir = tc.nextLine().charAt(0);
-            } while (salir != 'S' && salir != 's' && salir != 'N' && salir != 'n');
-        } while (salir == 'S' || salir == 's');
+            tc.nextLine();
+            do{
+                System.out.println("Quieres volver a introduceir año y mes? (S)i/(N)o");
+                    termina = tc.nextLine().charAt(0);
+            } while (termina != 'S' && termina != 's' && termina != 'N' && termina != 'n');
+        } while (termina == 'S' || termina == 's');
     }
 
     /**
@@ -186,11 +187,13 @@ public class Unidad3Ejercicio13 {
      * @param d Temperatura minima registrada en todo el mes
      * @param e Dia en que se registra dicha temperatura minima
      */
-    public static void mostrarDatos(double a, double b, double c, double d, double e) {
+    public static void mostrarDatos(double a, double b, int c, double d, int e) {
+        System.out.println("");
         System.out.println("\t\tºC\tºF\t\t\tDia");
         System.out.println("Temp. Media\t" + a + "\t" + celsiusAFarenheit(a) + "\t\t\t---");
         System.out.println("Temp. Max\t" + b + "\t" + celsiusAFarenheit(b) + "\t\t\t" + c);
         System.out.println("Temp. Min\t" + d + "\t" + celsiusAFarenheit(d) + "\t\t\t" + e);
+        System.out.println("");
     }
 
     /**
