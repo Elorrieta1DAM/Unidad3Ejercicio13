@@ -55,7 +55,7 @@ public class Unidad3Ejercicio13 {
             mostrarDatos(media, tempmax, diamax, tempmin, diamin);
             tc.nextLine();
             do{
-                System.out.println("Quieres volver a introduceir año y mes? (S)i/(N)o");
+                System.out.println("Quieres volver a introducir año y mes? (S)i/(N)o");
                     termina = tc.nextLine().charAt(0);
             } while (termina != 'S' && termina != 's' && termina != 'N' && termina != 'n');
         } while (termina == 'S' || termina == 's');
